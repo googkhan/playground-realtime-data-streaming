@@ -1,4 +1,4 @@
-#!/home/ubuntu/realtime-data-streaming/venv/bin/python
+#!/home/ubuntu/git/playground-realtime-data-streaming/venv/bin/python
 
 import sys
 import json
