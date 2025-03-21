@@ -33,11 +33,22 @@ def format_data(res):
 
 def stream_data():
     import json
+    from kafka import KafkaProducer
+    import time
+
 
     res = get_data()
     res = format_data(res)
 
-    print(json.dumps(res, indent=4))
+    # print(json.dumps(res, indent=4))
+
+    # docker compose icindeki networkde yapsaydik broker:9092 diyebilirdik
+    producer = KafkaProducer(bootstrap_servers=['localhost:9092', max_block_ms=5000])
+
+
+
+
+
 
 #with DAG('user_automation',
 #         default_args=default_args,
