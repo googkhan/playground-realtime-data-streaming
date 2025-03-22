@@ -123,11 +123,13 @@ services:
       - confluent
 
   postgres:
-    image: postgres:14.0
+    image: postgres:15.0
     environment:
       - POSTGRES_USER=airflow
       - POSTGRES_PASSWORD=airflow
       - POSTGRES_DB=airflow
+    ports:
+      - "5432:5432"
     logging:
       options:
         max-size: 10m
@@ -146,7 +148,7 @@ services:
     environment:
       - LOAD_EX=n
       - EXECUTOR=Sequential
-      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow:airflow@postgres:5432/airflow
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
       - AIRFLOW_WEBSERVER_SECRET_KEY=00iEoSPX35nNE8kHCKtciC4y3zPb3Yj8QXH4fXFcHls=
     command: bash -c "pip install -r ./requirements.txt && airflow db upgrade && airflow scheduler"
     healthcheck:
