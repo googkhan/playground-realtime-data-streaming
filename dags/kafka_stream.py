@@ -36,24 +36,35 @@ def stream_data():
     import json
     from kafka import KafkaProducer
     import time
+    import logging
 
-    res = get_data()
-    res = format_data(res)
+#    res = get_data()
+#    res = format_data(res)
+#    print(json.dumps(res, indent=4))
+    producer = KafkaProducer(bootstrap_servers=['broker:29092'], max_block_ms=5000)
+#    producer.send('users_created', json.dumps(res).encode('utf-8'))
 
-    # print(json.dumps(res, indent=4))
+    while True:
+        if time.time() > curr_time + 60:
+            break
+        try:
+            res = get_data()
+            res = format_data(res)
+            
+            producer.send('users_generated', json.dumps(res).encode('utf-8'))
+        except Exception as e:
+            logging.error(f'Error occurred? {e}')
 
-    # docker compose icindeki networkde yapsaydik broker:9092 diyebilirdik
-    producer = KafkaProducer(bootstrap_servers=['localhost:9092'], max_block_ms=5000)
-    producer.send('users_created', json.dumps(res).encode('utf-8'))
+        
 
 
-#with DAG('user_automation',
-#         default_args=default_args,
-#         schedule_interval='@daily',
-#         catchup=False) as dag:
-#
-#    streaming_task = PythonOperator(
-#            task_id='stream_data_from_api',
-#            python_callable=stream_data
-#            )
-stream_data()
+with DAG('user_automation',
+         default_args=default_args,
+         schedule_interval='@daily',
+         catchup=False) as dag:
+
+    streaming_task = PythonOperator(
+            task_id='stream_data_from_api',
+            python_callable=stream_data
+            )
+#stream_data()
