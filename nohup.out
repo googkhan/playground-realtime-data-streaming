@@ -1,0 +1,4 @@
+2025/03/24 12:27:01 socat[1355152] E connect(5, AF=2 172.20.0.4:8080, 16): Connection timed out
+2025/03/24 12:27:13 socat[1355247] E connect(5, AF=2 172.20.0.4:8080, 16): Connection timed out
+2025/03/24 12:28:23 socat[1356087] E connect(5, AF=2 172.20.0.4:8080, 16): Connection timed out
+2025/03/24 12:28:31 socat[1356106] E connect(5, AF=2 172.20.0.4:8080, 16): Connection timed out
