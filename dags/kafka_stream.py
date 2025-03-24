@@ -41,8 +41,11 @@ def stream_data():
 #    res = get_data()
 #    res = format_data(res)
 #    print(json.dumps(res, indent=4))
-    producer = KafkaProducer(bootstrap_servers=['broker:29092'], max_block_ms=5000)
 #    producer.send('users_created', json.dumps(res).encode('utf-8'))
+
+    producer = KafkaProducer(bootstrap_servers=['broker:29092'], max_block_ms=5000)
+    curr_time = time.time()
+  
 
     while True:
         if time.time() > curr_time + 60:
@@ -52,11 +55,10 @@ def stream_data():
             res = format_data(res)
             
             producer.send('users_generated', json.dumps(res).encode('utf-8'))
+
         except Exception as e:
-            logging.error(f'Error occurred? {e}')
-
-        
-
+            logging.error(f'Error occurred: {e}')
+            continue
 
 with DAG('user_automation',
          default_args=default_args,
