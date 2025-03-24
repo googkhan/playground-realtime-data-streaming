@@ -38,11 +38,7 @@ def stream_data():
     import time
     import logging
 
-#    res = get_data()
-#    res = format_data(res)
-#    print(json.dumps(res, indent=4))
     producer = KafkaProducer(bootstrap_servers=['broker:29092'], max_block_ms=5000)
-#    producer.send('users_created', json.dumps(res).encode('utf-8'))
 
     curr_time = time.time()
     while True:
