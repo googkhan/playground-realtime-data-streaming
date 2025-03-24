@@ -49,9 +49,11 @@ def stream_data():
             res = format_data(res)
             
             producer.send('users_generated', json.dumps(res).encode('utf-8'))
+
         except Exception as e:
-            logging.error(f'Error occurred? {e}')
-        
+            logging.error(f'Error occurred: {e}')
+            continue
+
 with DAG('user_automation',
          default_args=default_args,
          schedule_interval='@daily',
