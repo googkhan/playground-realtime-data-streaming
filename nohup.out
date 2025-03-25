@@ -130,3 +130,5 @@
 2025/03/24 14:56:25 socat[1392869] W waitpid(-1, {}, WNOHANG): no child has exited
 2025/03/24 14:56:34 socat[1399410] W waitpid(-1, {}, WNOHANG): no child has exited
 2025/03/24 14:57:35 socat[1399410] W waitpid(-1, {}, WNOHANG): no child has exited
+2025/03/24 19:50:05 socat[18003] E exactly 2 addresses required (there are 1); use option "-h" for help
+2025/03/25 10:31:11 socat[19810] W exiting on signal 15
