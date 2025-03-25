@@ -96,8 +96,8 @@ services:
 
   webserver:
     image: apache/airflow:2.6.0-python3.9
-    command: airflow_webserver
-    hostname: airflow_webserver
+    command: webserver
+    hostname: webserver
     container_name: webserver
     entrypoint: ['/opt/airflow/scripts/entrypoint.sh']
     depends_on:
@@ -143,8 +143,8 @@ services:
 
   scheduler:
     image: apache/airflow:2.6.0-python3.9
-    hostname: airflow_scheduler
-    container_name: airflow_scheduler
+    hostname: scheduler
+    container_name: scheduler
     depends_on:
       webserver:
         condition: service_healthy
@@ -202,9 +202,6 @@ services:
       - CASSANDRA_PASSWORD=cassandra
     networks:
       - confluent
-
-
-
 
 networks:
   confluent:
