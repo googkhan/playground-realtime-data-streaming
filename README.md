@@ -1,6 +1,7 @@
 # WIP
 
 # project diagram
+![image](https://github.com/user-attachments/assets/a0c92a38-2d0a-4557-bd83-75c357f17805)
 
 
 # steps
